@@ -1,0 +1,102 @@
+{% extends 'base/main.html' %}
+
+{%block title%}Drugs
+{%endblock title%}
+
+
+    
+  {%block content%}
+    
+
+
+      
+
+        <div class="center" style="border-radius:8px;">
+          <div class="row" >
+          <div class="col-md-12">
+          <form class="card card-sm">
+                 <div class="card-body row no-gytters align-items-center">
+                     <div class="col">
+                        <input type="search" name="item_name" placeholder="search for banned drugs" class="form-control form-control-borderless">
+                     </div>
+                     <div class="col-auto">
+                           <button class="btn btn-info" type="submit">Search</button>
+                     </div>
+                 </div>
+          </form>
+          </div>
+          </div>
+          </div>
+          
+          
+          <div class="row">
+          {%for product in product_objects%}
+          <div class="col-md-4" style="padding:5px;">
+                <div class="card">
+                
+                <div class="card-body">
+                <div id="nm{{product.id}}" class="card-title">
+                {{product.title}}
+                </div>
+            
+          
+                <a href="/{{product.id}}" class="btn btn-info">View</a>
+               
+                </div>
+                </div>
+          </div>
+          {%endfor%}       
+          
+          </div>
+
+          {% comment %} 
+          <div class="row">
+            {%for drug in drug_objects%}
+            <div class="col-md-4" style="padding:5px;">
+                  <div class="card">
+                  <img src="{{drug.image}}"  class="card-img-top" style="height:160px;">
+                  <div class="card-body">
+                  <div id="nm{{drug.id}}" class="card-title">
+                  {{drug.title}}
+                  </div>
+              
+            
+                  <a href="/{{drug.id}}" class="btn btn-success">View</a>
+                 
+                  </div>
+                  </div>
+            </div>
+            {%endfor%}       
+            
+            </div>
+             {% endcomment %}
+          
+          
+            <div class="row">
+             <div class="col-md-3 offset-md-4">
+                <ul class="pagination">
+                   {%if product_objects.has_previous%}
+                     <li class="page-item">
+                        <a class="page-link" href="?page={{product_objects.previous_page_number}}">Previous</a>
+                     </li>
+                   {%endif%}
+          
+                   <li style="" class="page-item active">
+                        <a class="page-link bg-info" href="?page={{product_objects.number}}">Current</a>
+                     </li>
+          
+                   {%if product_objects.has_next%}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{product_objects.next_page_number}}">Next  </a>
+                     </li>
+                   {%endif%}
+                </ul>
+             </div>
+          </div>
+          
+          </div>
+
+
+          {%endblock content%}
+
+
